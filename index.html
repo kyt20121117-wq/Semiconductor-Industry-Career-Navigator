@@ -62,6 +62,26 @@ h1{font-size:27px;line-height:1.5;color:var(--navy);margin:0}
 .small{font-size:12px;color:#788892;line-height:1.75}
 footer{text-align:center;color:#80909a;font-size:12px;padding:22px}
 @media(max-width:560px){.card{padding:22px 17px}.site-title{font-size:20px}.question{font-size:21px}.result-head h2{font-size:23px}.score-row{grid-template-columns:112px 1fr 36px;font-size:12px}.rank-card{padding:13px}}
+
+/* TOP5 適合度・ランキング強調 */
+#resultScreen{background:linear-gradient(180deg,#eef7ff 0,#f8fbff 45%,#eafaf6 100%);padding:10px;border-radius:24px}
+.result-head{background:linear-gradient(135deg,#0b2742,#1464a0 58%,#0b8f87)!important;color:#fff!important}
+.result-head h2,.result-head p{color:#fff!important}
+#schoolRanking,#companyRanking{display:grid;gap:13px}
+.rank-card{border-radius:16px!important;background:#fff;box-shadow:0 6px 20px rgba(20,55,75,.08);border:1px solid #dce6ec;padding:17px!important}
+.rank-card.top1{background:linear-gradient(135deg,#fff6d8,#fffdf6);border-color:#e7c65f}
+.rank-card.top2{background:linear-gradient(135deg,#eef2f6,#fff);border-color:#c7d0d8}
+.rank-card.top3{background:linear-gradient(135deg,#fff0e5,#fffaf7);border-color:#e5b48f}
+.fitline{display:flex;align-items:center;gap:10px;margin:12px 0}
+.fitnum{min-width:64px;font-size:27px;font-weight:950;color:#1464a0}
+.fittrack{flex:1;height:12px;border-radius:999px;background:#dce7ed;overflow:hidden}
+.fitbar{height:100%;border-radius:999px;background:linear-gradient(90deg,#14a6a0,#1464a0)}
+.top1 .fitbar{background:linear-gradient(90deg,#f4c542,#c98b00)} .top2 .fitbar{background:linear-gradient(90deg,#aab6c2,#667788)} .top3 .fitbar{background:linear-gradient(90deg,#e2a06b,#9a5a2b)}
+.rank-card:nth-child(n+6){background:#f8fbfd;padding:12px 15px!important}
+.rank-card:nth-child(n+6) .fitline{display:none}
+.rank-card:nth-child(n+6) .meta,.rank-card:nth-child(n+6) p{display:none}
+.rank-card:nth-child(n+6) h4{font-size:15px!important}
+.official-top{display:inline-block;margin-top:8px;padding:9px 12px;border-radius:10px;background:#0b2742;color:#fff!important;text-decoration:none!important;font-weight:900}
 </style>
 </head>
 <body>
@@ -86,8 +106,8 @@ footer{text-align:center;color:#80909a;font-size:12px;padding:22px}
 <div class="section" style="margin-top:0;padding-top:0;border:0"><h3>1. 診断スコアと適性分析</h3><div id="scoreList" class="score-list"></div><p id="scoreExplanation"></p></div>
 <div class="section"><h3>2. あなたに合う進路ルート</h3><div id="routeRecommendation"></div></div>
 <div class="section"><h3>3. 学ぶべき分野・学科</h3><div id="fieldRecommendation"></div></div>
-<div class="section"><h3>4. 推奨学校ランキング｜全国候補10校以上</h3><p>回答との一致度をもとに候補を並べています。ベスト1・2・3は特に詳しく理由を表示します。</p><div id="schoolRanking"></div></div>
-<div class="section"><h3>5. 推奨企業ランキング｜全国候補10社以上</h3><p>半導体業界の企業・事業領域と、あなたの興味・希望職種との関連性から候補を表示します。採用職種は年度や事業所で異なります。</p><div id="companyRanking"></div></div>
+<div class="section"><h3>4. 推奨学校ランキング｜全国候補20校｜TOP5は適合度グラフ</h3><p>回答との一致度をもとに候補を並べています。ベスト1・2・3は特に詳しく理由を表示します。</p><div id="schoolRanking"></div></div>
+<div class="section"><h3>5. 推奨企業ランキング｜全国候補20社｜TOP5は適合度グラフ</h3><p>半導体業界の企業・事業領域と、あなたの興味・希望職種との関連性から候補を表示します。採用職種は年度や事業所で異なります。</p><div id="companyRanking"></div></div>
 <div class="section"><h3>6. 向いている職種ベスト3</h3><div id="jobRanking"></div></div>
 <div class="section"><h3>7. あなたの回答から分かる強み・注意点</h3><div id="strengths"></div></div>
 <div class="section"><h3>8. 進路決定までの行動ロードマップ</h3><ol id="roadmap" class="action-list"></ol></div>
@@ -136,7 +156,15 @@ const schools=[
 {name:"熊本大学",region:"kyushu",type:"国立大学",fields:["device","electric","material","research","equipment"],route:["afterHigh","graduate"],why:"半導体関連の研究・教育や地域産業との接点も視野に、電気電子・材料などを学びたい人に向く候補。",url:"https://www.kumamoto-u.ac.jp/"},
 {name:"九州工業大学",region:"kyushu",type:"国立大学",fields:["equipment","electric","software","mech","practice","design"],route:["afterHigh","graduate"],why:"電気・機械・情報などの工学を学び、装置・制御・生産技術・ソフトウェア分野を目指したい人に向く候補。",url:"https://www.kyutech.ac.jp/"},
 {name:"長岡技術科学大学",region:"east",type:"国立大学",fields:["equipment","electric","material","practice","design","skill"],route:["afterHigh","graduate","vocational"],why:"実務・実験・工学専門性を重視し、製造技術や装置技術につなげたい人に向く候補。高専からの編入ルートも検討できる。",url:"https://www.nagaokaut.ac.jp/"}
-];
+
+,{name:"仙台高等専門学校",region:"north",type:"国立高等専門学校",fields:["equipment","electric","software","practice","skill","mech"],route:["afterHigh","graduate"],why:"実験・実習を重視しながら、機械・電気電子・情報系の専門性を身につけたい人に向く候補。",url:"https://www.sendai-nct.ac.jp/"}
+,{name:"群馬工業高等専門学校",region:"east",type:"国立高等専門学校",fields:["equipment","production","electric","practice","mech"],route:["afterHigh","graduate"],why:"早い段階から工学技術を学び、製造装置・生産技術につながる力を身につけたい人に向く候補。",url:"https://www.gunma-ct.ac.jp/"}
+,{name:"富山高等専門学校",region:"central",type:"国立高等専門学校",fields:["equipment","software","production","practice","electric"],route:["afterHigh","graduate"],why:"実践的な技術教育を通じて、機械・電気・情報系の進路を考えたい人に向く候補。",url:"https://www.nc-toyama.ac.jp/"}
+,{name:"大阪公立大学",region:"west",type:"公立大学",fields:["equipment","software","quality","electric","mech"],route:["afterHigh","graduate"],why:"都市部で工学系の専門分野を幅広く比較し、設計・情報・品質系を検討したい人に向く候補。",url:"https://www.omu.ac.jp/"}
+,{name:"奈良工業高等専門学校",region:"west",type:"国立高等専門学校",fields:["equipment","production","software","practice","skill"],route:["afterHigh","graduate"],why:"実習を重視し、ものづくり・制御・情報技術を早期から身につけたい人に向く候補。",url:"https://www.nara-k.ac.jp/"}
+,{name:"松江工業高等専門学校",region:"chugoku",type:"国立高等専門学校",fields:["equipment","production","software","practice","mech"],route:["afterHigh","graduate"],why:"機械・電気電子・情報系の実践技術を学び、地域産業から全国の技術職まで視野に入れたい人に向く候補。",url:"https://www.matsue-ct.jp/"}
+,{name:"佐世保工業高等専門学校",region:"kyushu",type:"国立高等専門学校",fields:["equipment","production","software","practice","electric"],route:["afterHigh","graduate"],why:"九州で実践的な工学教育を受け、装置・製造・情報系の技術職を目指したい人に向く候補。",url:"https://www.sasebo.ac.jp/"}
+,{name:"大分工業高等専門学校",region:"kyushu",type:"国立高等専門学校",fields:["equipment","production","quality","practice","mech"],route:["afterHigh","graduate"],why:"ものづくりと実習を重視し、製造技術・設備・品質分野を目指したい人に向く候補。",url:"https://www.oita-ct.ac.jp/"}];
 
 const companies=[
 {name:"東京エレクトロン",area:"製造装置",tags:["equipment","design","production","quality","customer","mech","electric"],jobs:"半導体製造装置の開発・設計、プロセス技術、製造技術、品質、フィールド技術など。",why:"装置そのものや、装置を使った製造プロセスに関心がある回答と結びつきやすい。機械・電気・制御・材料など複数の専門を活かせる。",url:"https://www.tel.co.jp/"},
@@ -151,7 +179,15 @@ const companies=[
 {name:"JASM",area:"半導体製造",tags:["device","production","quality","material","chem","factory"],jobs:"半導体製造、生産技術、設備、プロセス、品質、工場運営など。",why:"半導体を実際に製造する工場の仕事に関心があり、製造・工程・品質分野を目指す人に候補となる。",url:"https://www.tsmc.com/"},
 {name:"ローム",area:"半導体・電子部品",tags:["device","electric","research","material","quality","production"],jobs:"パワー半導体・電子部品の開発、デバイス・プロセス、生産技術、品質など。",why:"電気電子・材料・デバイスに興味があり、半導体や電子部品の開発・製造を支えたい人に候補となる。",url:"https://www.rohm.co.jp/"},
 {name:"キヤノンアネルバ",area:"半導体製造装置",tags:["equipment","mech","electric","material","production","design"],jobs:"真空成膜装置などの開発・設計、製造、プロセス、品質、技術サポートなど。",why:"真空技術・機械・電気・材料に関心があり、装置開発や製造技術を目指す人に候補となる。",url:"https://anelva.canon/"}
-];
+
+,{name:"ソニーセミコンダクタマニュファクチャリング",area:"半導体製造",tags:["device","production","quality","factory","plant","mcompany"],jobs:"半導体製造、デバイス・プロセス技術、生産技術、品質関連など。",why:"半導体そのものや工場の製造・品質に関心がある人に候補となる。",url:"https://www.sony-semicon.com/"}
+,{name:"キヤノン",area:"製造装置・精密機器",tags:["equipment","design","software","quality","mech"],jobs:"精密機器・製造装置関連の開発、設計、ソフトウェア、品質など。",why:"精密な装置や機械・電気・ソフトウェアを組み合わせた技術に関心がある人に候補となる。",url:"https://global.canon/"}
+,{name:"ニコン",area:"精密機器・装置",tags:["equipment","design","software","quality","mech"],jobs:"精密機器・装置関連の開発、設計、ソフトウェア、品質など。",why:"精密機械や光学・電子技術を活かした装置開発に関心がある人に候補となる。",url:"https://www.nikon.com/"}
+,{name:"SUMCO",area:"半導体材料",tags:["device","material","chem","quality","factory","mcompany"],jobs:"シリコンウェーハ関連の材料・製造・品質・技術開発など。",why:"材料・化学・品質や半導体製造の基盤技術に関心がある人に候補となる。",url:"https://www.sumcosi.com/"}
+,{name:"信越化学工業",area:"半導体材料",tags:["device","material","chem","quality","factory","mcompany"],jobs:"材料・化学・製造技術・品質・研究開発など。",why:"化学・材料を土台に半導体関連の技術分野を目指したい人に候補となる。",url:"https://www.shinetsu.co.jp/"}
+,{name:"東京応化工業",area:"半導体材料",tags:["device","material","chem","quality","research"],jobs:"半導体用材料の研究開発、品質、生産技術など。",why:"化学・材料・プロセス技術に関心があり、研究から製造まで幅広く考えたい人に候補となる。",url:"https://www.tok.co.jp/"}
+,{name:"荏原製作所",area:"製造装置",tags:["equipment","production","quality","mech","ecompany"],jobs:"装置・機械関連の開発、製造技術、品質など。",why:"機械・装置技術や製造現場の改善に関心がある人に候補となる。",url:"https://www.ebara.com/"}
+,{name:"アルバック",area:"製造装置",tags:["equipment","production","quality","mech","material","ecompany"],jobs:"真空技術を活かした装置開発、製造、プロセス、品質など。",why:"装置・材料・真空技術や製造プロセスに関心がある人に候補となる。",url:"https://www.ulvac.co.jp/"}];
 
 const categoryNames={device:"デバイス・材料・プロセス研究型",equipment:"製造装置・機械電気設計型",production:"製造・生産技術・現場実践型",software:"ソフトウェア・AI・データ活用型",quality:"品質・工程改善型",explore:"幅広く比較して進路を決める探索型"};
 let current=0,answers=[];
@@ -177,8 +213,20 @@ function routeScore(item){let r=answers[1];if(r==="unsure")return 1;if(item.rout
 function schoolScore(item,profile){let best=Object.entries(profile).sort((a,b)=>b[1]-a[1])[0][0];let score=0;item.fields.forEach(t=>{if(t===best)score+=4;if(profile[t])score+=Math.min(2,profile[t]*.35)});score+=regionScore(item);score+=routeScore(item);if(answers[3]==="local"&&item.region!==answers[2])score-=3;if(answers[16]==="lowcost")score+=item.type==="国立大学"?3:0;if(answers[16]==="private"&&item.type==="私立大学")score+=2;return score}
 function companyScore(item,profile){let score=0;item.tags.forEach(t=>{if(profile[t])score+=Math.min(4,profile[t]*.65)});const pref=answers[17];if(pref==="rcompany"&&["半導体デバイス","メモリ半導体"].includes(item.area))score+=3;if(pref==="ecompany"&&item.area.includes("装置"))score+=3;if(pref==="mcompany"&&["半導体製造","メモリ半導体"].includes(item.area))score+=3;if(pref==="scompany"&&item.tags.includes("software"))score+=3;return score}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function renderRanks(items,container,kind){let html="";items.forEach((it,i)=>{let rank=i<3?`ベスト${i+1}`:`候補 ${i+1}`;let cls=i===0?"rank best":"rank";let reason=kind==="school"?it.why:it.why;let detail=kind==="school"?`${it.type}｜${it.region==="north"?"北海道・東北":it.region==="east"?"関東・甲信越":it.region==="central"?"東海・北陸":it.region==="west"?"近畿":it.region==="chugoku"?"中国・四国":"九州・沖縄"}｜関連分野：${it.fields.map(x=>({device:"デバイス・材料",equipment:"装置・機械電気",production:"製造・実習",software:"情報・ソフト",quality:"品質",research:"研究",math:"数学・物理",chem:"化学",material:"材料",electric:"電気電子",mech:"機械",practice:"実践教育",design:"設計",skill:"実務スキル"}[x]||x)).join("、")}`:`領域：${it.area}｜関連職種：${it.jobs}`;
-html+=`<article class="rank-card"><div class="rank-top"><span class="${cls}">${rank}</span><h4>${esc(it.name)}</h4></div><div class="meta">${esc(detail)}</div><p><b>推薦理由：</b>${esc(reason)}</p>${kind==="company"?`<p><b>想定される仕事：</b>${esc(it.jobs)}</p>`:""}<a href="${it.url}" target="_blank" rel="noopener">公式サイトで詳細を確認 ↗</a></article>`});document.getElementById(container).innerHTML=html}
+function renderRanks(items,container,kind){
+ const max=Math.max(...items.map(x=>x.score),1);
+ const min=Math.min(...items.map(x=>x.score));
+ let html="";
+ items.forEach((it,i)=>{
+   const fit=Math.round(68+((it.score-min)/Math.max(1,max-min))*29);
+   const rank=i<5?`BEST ${i+1}`:`候補 ${i+1}`;
+   const cls=i===0?"top1":i===1?"top2":i===2?"top3":"";
+   const detail=kind==="school"?`${it.type}｜${it.region==="north"?"北海道・東北":it.region==="east"?"関東・甲信越":it.region==="central"?"東海・北陸":it.region==="west"?"近畿":it.region==="chugoku"?"中国・四国":"九州・沖縄"}`:`領域：${it.area}`;
+   const link=i<3?`<a class="official-top" href="${it.url}" target="_blank" rel="noopener">公式サイトを見る ↗</a>`:"";
+   html+=`<article class="rank-card ${cls}"><div class="rank-top"><span class="rank ${i===0?"best":""}">${rank}</span><h4>${esc(it.name)}</h4></div><div class="fitline"><span class="fitnum">${fit}%</span><div class="fittrack"><div class="fitbar" style="width:${fit}%"></div></div></div><div class="meta">${esc(detail)}</div><p><b>推薦理由：</b>${esc(it.why)}</p>${kind==="company"?`<p><b>想定される仕事：</b>${esc(it.jobs)}</p>`:""}${link}</article>`;
+ });
+ document.getElementById(container).innerHTML=html;
+} 
 function showResult(){document.getElementById("quizScreen").classList.add("hidden");document.getElementById("resultScreen").classList.remove("hidden");const s=scoreProfile();const sorted=Object.entries(s).sort((a,b)=>b[1]-a[1]);const top=sorted[0][0],second=sorted[1][0];const labels={device:"デバイス・材料・プロセス研究",equipment:"製造装置・機械電気設計",production:"製造・生産技術・現場実践",software:"ソフトウェア・AI・データ",quality:"品質・工程改善",explore:"幅広く比較する探索"};document.getElementById("resultTitle").textContent=labels[top]+"型が第一候補です";document.getElementById("resultSummary").textContent=`20問の回答では「${labels[top]}」との一致が最も多く、次点は「${labels[second]}」です。興味だけでなく、学び方・仕事環境・進路条件も加味して候補を整理しました。`;
 const max=Math.max(...Object.values(s),1);document.getElementById("scoreList").innerHTML=sorted.map(([k,v])=>`<div class="score-row"><b>${labels[k]}</b><div class="bar"><span style="width:${Math.max(3,v/max*100)}%"></span></div><b>${v}点</b></div>`).join("");
 document.getElementById("scoreExplanation").textContent=`第一候補は「${labels[top]}」、第二候補は「${labels[second]}」です。これは回答内容の傾向を点数化した相対評価です。能力や将来を固定的に判定するものではありません。`;
