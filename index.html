@@ -1,116 +1,908 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>半導体業界・進路選択ナビ</title>
+<title>半導体業界・進路選択ナビ</title>
 
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
-        "Yu Gothic", sans-serif;
-      background: #f4f7f9;
-      margin: 0;
-      padding: 20px;
-      text-align: center;
-    }
+<style>
+:root {
+  --navy: #12385b;
+  --blue: #176b9c;
+  --light-blue: #eef7fb;
+  --teal: #198c8c;
+  --text: #24313c;
+  --subtext: #61717d;
+  --border: #d9e3e8;
+  --bg: #f4f7f9;
+  --white: #ffffff;
+}
 
-    .container {
-      max-width: 600px;
-      margin: 40px auto;
-      background: #ffffff;
-      padding: 30px 20px;
-      border-radius: 16px;
-      box-sizing: border-box;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    h1 {
-      color: #163a5f;
-      font-size: 28px;
-    }
+body {
+  margin: 0;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Sans",
+    "Yu Gothic",
+    "Noto Sans JP",
+    sans-serif;
+  background: var(--bg);
+  color: var(--text);
+}
 
-    h2 {
-      color: #333333;
-      font-size: 20px;
-      margin-top: 30px;
-    }
+header {
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+}
 
-    p {
-      line-height: 1.8;
-      color: #555555;
-    }
+.header-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 18px 20px;
+}
 
-    button {
-      width: 100%;
-      padding: 18px;
-      margin-top: 15px;
-      font-size: 18px;
-      font-weight: bold;
-      border: none;
-      border-radius: 10px;
-      background: #1976a3;
-      color: white;
-      cursor: pointer;
-    }
+.series {
+  font-size: 13px;
+  color: var(--blue);
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
 
-    #result {
-      display: none;
-      margin-top: 30px;
-      padding: 20px;
-      background: #eef7fa;
-      border-radius: 10px;
-    }
-  </style>
+.site-title {
+  margin-top: 5px;
+  font-size: 23px;
+  font-weight: 800;
+  color: var(--navy);
+}
+
+main {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 16px 50px;
+}
+
+.card {
+  background: var(--white);
+  border-radius: 18px;
+  padding: 28px 22px;
+  box-shadow: 0 8px 30px rgba(20, 55, 75, 0.06);
+}
+
+.start-card {
+  text-align: center;
+}
+
+.start-icon {
+  width: 74px;
+  height: 74px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--light-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34px;
+}
+
+h1 {
+  margin: 0;
+  color: var(--navy);
+  font-size: 27px;
+  line-height: 1.45;
+}
+
+.lead {
+  margin: 18px auto 0;
+  max-width: 560px;
+  color: var(--subtext);
+  line-height: 1.9;
+  font-size: 15px;
+}
+
+.notice {
+  margin-top: 22px;
+  padding: 14px;
+  background: #f7fafb;
+  border-radius: 10px;
+  color: var(--subtext);
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.primary-button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 18px;
+  border: none;
+  border-radius: 12px;
+  background: var(--navy);
+  color: white;
+  font-size: 17px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.primary-button:active {
+  transform: scale(0.99);
+}
+
+.hidden {
+  display: none !important;
+}
+
+.progress-area {
+  margin-bottom: 24px;
+}
+
+.progress-text {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--subtext);
+  margin-bottom: 9px;
+}
+
+.progress-bar {
+  height: 8px;
+  background: #e5edf1;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  width: 0;
+  background: var(--teal);
+  transition: width 0.3s;
+}
+
+.question-number {
+  color: var(--blue);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.question {
+  margin: 10px 0 24px;
+  color: var(--navy);
+  font-size: 24px;
+  line-height: 1.55;
+}
+
+.options {
+  display: grid;
+  gap: 12px;
+}
+
+.option-button {
+  width: 100%;
+  padding: 18px 16px;
+  background: white;
+  border: 1.5px solid var(--border);
+  border-radius: 12px;
+  text-align: left;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.option-button:hover {
+  border-color: var(--blue);
+  background: #f8fcfe;
+}
+
+.option-button:active {
+  transform: scale(0.99);
+}
+
+.back-button {
+  margin-top: 20px;
+  padding: 12px 4px;
+  border: none;
+  background: none;
+  color: var(--blue);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.result-label {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 999px;
+  background: var(--light-blue);
+  color: var(--blue);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.result-title {
+  margin: 14px 0 10px;
+  color: var(--navy);
+  font-size: 27px;
+  line-height: 1.45;
+}
+
+.result-summary {
+  color: var(--subtext);
+  line-height: 1.9;
+  font-size: 16px;
+}
+
+.result-section {
+  margin-top: 22px;
+  padding-top: 22px;
+  border-top: 1px solid var(--border);
+}
+
+.result-section h3 {
+  margin: 0 0 10px;
+  color: var(--navy);
+  font-size: 17px;
+}
+
+.result-section p,
+.result-section li {
+  color: var(--subtext);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.result-section ul {
+  padding-left: 22px;
+  margin-bottom: 0;
+}
+
+.highlight-box {
+  margin-top: 24px;
+  padding: 18px;
+  border-radius: 12px;
+  background: #f0f8f8;
+}
+
+.highlight-box h3 {
+  margin: 0 0 8px;
+  color: var(--teal);
+  font-size: 17px;
+}
+
+.highlight-box p {
+  margin: 0;
+  color: var(--text);
+  line-height: 1.8;
+}
+
+.restart-button {
+  width: 100%;
+  margin-top: 28px;
+  padding: 17px;
+  border: 1.5px solid var(--blue);
+  border-radius: 12px;
+  background: white;
+  color: var(--blue);
+  font-size: 16px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  color: #80909a;
+  font-size: 12px;
+}
+
+@media (max-width: 480px) {
+  .card {
+    padding: 24px 18px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .question {
+    font-size: 22px;
+  }
+
+  .result-title {
+    font-size: 24px;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<header>
+  <div class="header-inner">
+    <div class="series">SEMICONDUCTOR CAREER GUIDE</div>
+    <div class="site-title">半導体業界・進路選択ナビ</div>
+  </div>
+</header>
 
-    <h1>半導体業界・進路選択ナビ</h1>
+<main>
 
-    <p>
-      あなたに合う進学先や仕事の方向性を<br>
-      簡単な質問から考えます。
-    </p>
+<section id="startScreen" class="card start-card">
 
-    <h2>まず、あなたに最も近いものを選んでください</h2>
+  <div class="start-icon">🧭</div>
 
-    <button onclick="showResult('高校生')">
-      高校生
-    </button>
+  <h1>
+    あなたに合う<br>
+    半導体業界への進路を探す
+  </h1>
 
-    <button onclick="showResult('大学生')">
-      大学生
-    </button>
+  <p class="lead">
+    いくつかの質問に答えるだけで、<br>
+    あなたに合いやすい進学ルートと<br>
+    半導体業界の仕事の方向性を整理します。
+  </p>
 
-    <button onclick="showResult('保護者')">
-      保護者
-    </button>
+  <div class="notice">
+    この診断は進路を決定するものではありません。<br>
+    興味や優先したい条件から、考えやすい選択肢を整理するためのナビゲーションです。
+  </div>
 
-    <div id="result">
-      <h2 id="resultTitle"></h2>
+  <button class="primary-button" onclick="startQuiz()">
+    診断をはじめる
+  </button>
 
-      <p>
-        ボタンが正常に動きました！
-      </p>
+</section>
 
-      <p>
-        次は、本格的な進路診断を作っていきます。
-      </p>
+
+<section id="quizScreen" class="hidden">
+
+  <div class="progress-area">
+
+    <div class="progress-text">
+      <span id="progressLabel">質問 1 / 5</span>
+      <span id="progressPercent">20%</span>
+    </div>
+
+    <div class="progress-bar">
+      <div id="progressBar" class="progress"></div>
     </div>
 
   </div>
 
-  <script>
-    function showResult(answer) {
-      document.getElementById("result").style.display = "block";
+  <div class="card">
 
-      document.getElementById("resultTitle").innerText =
-        answer + "として診断を開始します";
-    }
-  </script>
+    <div id="questionNumber" class="question-number"></div>
+
+    <h2 id="questionText" class="question"></h2>
+
+    <div id="options" class="options"></div>
+
+    <button
+      id="backButton"
+      class="back-button"
+      onclick="goBack()"
+    >
+      ← 前の質問に戻る
+    </button>
+
+  </div>
+
+</section>
+
+
+<section id="resultScreen" class="card hidden">
+
+  <span class="result-label">
+    あなたの進路タイプ
+  </span>
+
+  <h2 id="resultTitle" class="result-title"></h2>
+
+  <p id="resultSummary" class="result-summary"></p>
+
+  <div class="result-section">
+    <h3>おすすめの進路ルート</h3>
+    <p id="resultRoute"></p>
+  </div>
+
+  <div class="result-section">
+    <h3>学びやすい分野</h3>
+    <p id="resultField"></p>
+  </div>
+
+  <div class="result-section">
+    <h3>向いている仕事の方向性</h3>
+    <ul id="resultJobs"></ul>
+  </div>
+
+  <div class="result-section">
+    <h3>この進路が候補になる理由</h3>
+    <p id="resultReason"></p>
+  </div>
+
+  <div class="highlight-box">
+    <h3>進路選択ナビからのアドバイス</h3>
+    <p id="resultAdvice"></p>
+  </div>
+
+  <button class="restart-button" onclick="restartQuiz()">
+    最初から診断する
+  </button>
+
+</section>
+
+</main>
+
+<footer>
+  半導体業界・進路選択ナビ
+</footer>
+
+
+<script>
+
+const questions = [
+
+  {
+    question:
+      "現在のあなたに最も近いものを選んでください。",
+    options: [
+      { text: "高校生・これから進学先を考える", value: "highschool" },
+      { text: "大学生・専門学校生・高専生", value: "student" },
+      { text: "社会人・転職を考えている", value: "career" },
+      { text: "保護者として進路を考えている", value: "parent" }
+    ]
+  },
+
+  {
+    question:
+      "半導体業界で、今の時点で興味があることは何ですか？",
+    options: [
+      { text: "機械や装置をつくる・組み立てる", value: "manufacturing" },
+      { text: "設計・開発・研究に関わる", value: "engineering" },
+      { text: "プログラム・IT・データに関わる", value: "software" },
+      { text: "品質や製造工程を改善する", value: "quality" },
+      { text: "まだ具体的には分からない", value: "unknown" }
+    ]
+  },
+
+  {
+    question:
+      "進路を選ぶとき、最も大切にしたいことは何ですか？",
+    options: [
+      { text: "専門性を深く身につけたい", value: "specialist" },
+      { text: "実践的な技術を身につけたい", value: "practical" },
+      { text: "就職につながることを重視したい", value: "employment" },
+      { text: "将来の選択肢を広く残したい", value: "options" },
+      { text: "学費や費用面も大切にしたい", value: "cost" }
+    ]
+  },
+
+  {
+    question:
+      "学ぶ環境として、今の自分に近い希望はどれですか？",
+    options: [
+      { text: "理論から深く学びたい", value: "theory" },
+      { text: "実験や実習を多く経験したい", value: "practice" },
+      { text: "早く専門技術を身につけたい", value: "early" },
+      { text: "まだ決められない", value: "undecided" }
+    ]
+  },
+
+  {
+    question:
+      "今のあなたが一番不安に感じていることは何ですか？",
+    options: [
+      { text: "自分にどんな仕事が向いているか分からない", value: "fit" },
+      { text: "どの学校・学部を選べばいいか分からない", value: "school" },
+      { text: "卒業後に本当に就職できるか不安", value: "job" },
+      { text: "進学費用や将来の収入が心配", value: "money" },
+      { text: "まだ将来のイメージができていない", value: "future" }
+    ]
+  }
+
+];
+
+let currentQuestion = 0;
+let answers = [];
+
+
+function startQuiz() {
+
+  currentQuestion = 0;
+  answers = [];
+
+  document
+    .getElementById("startScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("resultScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("quizScreen")
+    .classList.remove("hidden");
+
+  showQuestion();
+
+}
+
+
+function showQuestion() {
+
+  const data = questions[currentQuestion];
+
+  document.getElementById("questionNumber").innerText =
+    "QUESTION " + (currentQuestion + 1);
+
+  document.getElementById("questionText").innerText =
+    data.question;
+
+  document.getElementById("progressLabel").innerText =
+    "質問 " + (currentQuestion + 1) + " / " + questions.length;
+
+  const percent =
+    Math.round(
+      ((currentQuestion + 1) / questions.length) * 100
+    );
+
+  document.getElementById("progressPercent").innerText =
+    percent + "%";
+
+  document.getElementById("progressBar").style.width =
+    percent + "%";
+
+  const optionsContainer =
+    document.getElementById("options");
+
+  optionsContainer.innerHTML = "";
+
+  data.options.forEach(option => {
+
+    const button =
+      document.createElement("button");
+
+    button.className =
+      "option-button";
+
+    button.innerText =
+      option.text;
+
+    button.onclick = () =>
+      selectAnswer(option.value);
+
+    optionsContainer.appendChild(button);
+
+  });
+
+
+  if (currentQuestion === 0) {
+
+    document
+      .getElementById("backButton")
+      .classList.add("hidden");
+
+  } else {
+
+    document
+      .getElementById("backButton")
+      .classList.remove("hidden");
+
+  }
+
+}
+
+
+function selectAnswer(value) {
+
+  answers[currentQuestion] = value;
+
+  if (currentQuestion < questions.length - 1) {
+
+    currentQuestion++;
+
+    showQuestion();
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+  } else {
+
+    showResult();
+
+  }
+
+}
+
+
+function goBack() {
+
+  if (currentQuestion > 0) {
+
+    currentQuestion--;
+
+    showQuestion();
+
+  }
+
+}
+
+
+function showResult() {
+
+  document
+    .getElementById("quizScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("resultScreen")
+    .classList.remove("hidden");
+
+
+  const interest = answers[1];
+  const priority = answers[2];
+  const environment = answers[3];
+  const concern = answers[4];
+
+
+  let result;
+
+
+  if (
+    interest === "engineering" ||
+    priority === "specialist" ||
+    environment === "theory"
+  ) {
+
+    result = {
+
+      title:
+        "技術・設計・開発を目指すタイプ",
+
+      summary:
+        "仕組みを理解し、専門的な技術を深く身につける進路との相性が比較的高いタイプです。半導体そのものだけでなく、機械・電気電子・情報・材料などの基礎分野から業界につながるルートも考えられます。",
+
+      route:
+        "大学や高等専門学校などで、工学系の専門分野を学びながら、設計・開発・技術職につながる進路を比較することが有力な候補です。",
+
+      field:
+        "機械工学、電気電子工学、情報工学、材料工学、化学系など。興味のある仕事内容から逆算して選ぶことが大切です。",
+
+      jobs: [
+        "半導体製造装置の設計・開発",
+        "半導体デバイスの技術開発",
+        "生産技術・プロセス技術",
+        "品質・解析・評価に関わる技術職"
+      ],
+
+      reason:
+        "専門性を深めたいという回答と、仕組みを理解しながら技術に関わりたいという方向性が重なっているためです。",
+
+      advice:
+        "学校名だけで決めるより、「卒業後にどの仕事へ進めるか」を先に確認してください。学部・学科の名前と、実際に学ぶ内容、卒業生の進路を一緒に見ることが重要です。"
+
+    };
+
+  }
+
+
+  else if (
+    interest === "manufacturing" ||
+    priority === "practical" ||
+    environment === "practice" ||
+    environment === "early"
+  ) {
+
+    result = {
+
+      title:
+        "実践技術・ものづくりを目指すタイプ",
+
+      summary:
+        "実際に装置や製品に触れながら技術を身につける進路との相性が比較的高いタイプです。半導体業界には、研究・設計だけではなく、製造、組立、検査、品質、生産技術など、多くの仕事があります。",
+
+      route:
+        "高等専門学校や専門的な実習を重視する教育機関、工学系の学校などを比較し、学べる内容と卒業後の就職先を確認する進路が有力です。",
+
+      field:
+        "機械系、電気電子系、制御系、ロボット系、製造技術系など。学校によって実習内容が大きく異なります。",
+
+      jobs: [
+        "半導体製造装置の製造・組立",
+        "装置の検査・調整",
+        "品質管理・品質保証",
+        "生産技術・製造技術"
+      ],
+
+      reason:
+        "理論だけでなく、実際のものづくりや技術を身につけたいという方向性が強いためです。",
+
+      advice:
+        "学校を選ぶときは、設備の新しさだけではなく、「何を実習するのか」「卒業後にどのような企業へ進んでいるのか」を必ず確認してください。"
+
+    };
+
+  }
+
+
+  else if (
+    interest === "software"
+  ) {
+
+    result = {
+
+      title:
+        "IT・データ・デジタル技術を活かすタイプ",
+
+      summary:
+        "半導体業界の中でも、ソフトウェア、データ、AI、制御技術など、デジタル分野とつながる進路を検討しやすいタイプです。",
+
+      route:
+        "情報工学やコンピュータ関連分野を学びながら、半導体企業や製造装置企業の技術職につながるルートを比較することが候補になります。",
+
+      field:
+        "情報工学、ソフトウェア、AI、データサイエンス、制御工学など。",
+
+      jobs: [
+        "製造装置のソフトウェア開発",
+        "制御システムに関わる技術職",
+        "データ分析・AI活用",
+        "半導体関連企業のIT技術職"
+      ],
+
+      reason:
+        "プログラムやITに関心があり、半導体産業をデジタル技術の側面から支える仕事と相性があるためです。",
+
+      advice:
+        "「半導体学科」という名前だけに限定せず、情報系から半導体業界へ進むルートも含めて比較してください。"
+
+    };
+
+  }
+
+
+  else if (
+    interest === "quality"
+  ) {
+
+    result = {
+
+      title:
+        "品質・改善・ものづくりを支えるタイプ",
+
+      summary:
+        "製品をより良くすることや、安定した品質を維持することに関わる仕事との相性を考えやすいタイプです。半導体産業では、品質と安定した製造が重要な仕事になります。",
+
+      route:
+        "工学系の基礎を学びながら、品質、生産技術、製造プロセスなどにつながる進路を検討することが候補になります。",
+
+      field:
+        "機械、電気電子、材料、化学、生産工学、品質管理に関連する分野。",
+
+      jobs: [
+        "品質管理",
+        "品質保証",
+        "生産技術",
+        "製造プロセスの改善"
+      ],
+
+      reason:
+        "製品や工程を改善することへの関心が、半導体産業の品質・生産分野とつながるためです。",
+
+      advice:
+        "職種名だけでは仕事内容が分かりにくいことがあります。企業の採用情報や仕事内容を確認し、「実際に何を改善する仕事なのか」まで比較してください。"
+
+    };
+
+  }
+
+
+  else {
+
+    result = {
+
+      title:
+        "まだ決めていない人のための探索タイプ",
+
+      summary:
+        "今の段階で具体的な仕事を決めていなくても問題ありません。半導体業界には幅広い職種があり、まずは自分が何に興味を持てるかを知ることから始められます。",
+
+      route:
+        "選択肢を広く残せる工学系や技術系の進路を比較しながら、学校で学べる内容と卒業後の就職先を確認していく方法が候補になります。",
+
+      field:
+        "機械、電気電子、情報、材料、化学など。まずは仕事内容とのつながりを理解することが重要です。",
+
+      jobs: [
+        "製造・組立",
+        "設計・開発",
+        "品質管理",
+        "生産技術",
+        "IT・ソフトウェア関連"
+      ],
+
+      reason:
+        "進路が決まっていない段階では、無理に一つへ絞るより、複数の仕事を知ってから判断するほうが選びやすいためです。",
+
+      advice:
+        "「やりたいことが決まってから学校を選ぶ」のではなく、「どんな仕事があるかを知り、その中から興味を探す」という順番でも大丈夫です。"
+
+    };
+
+  }
+
+
+  document.getElementById("resultTitle").innerText =
+    result.title;
+
+  document.getElementById("resultSummary").innerText =
+    result.summary;
+
+  document.getElementById("resultRoute").innerText =
+    result.route;
+
+  document.getElementById("resultField").innerText =
+    result.field;
+
+  document.getElementById("resultReason").innerText =
+    result.reason;
+
+  document.getElementById("resultAdvice").innerText =
+    result.advice;
+
+
+  const jobsList =
+    document.getElementById("resultJobs");
+
+  jobsList.innerHTML = "";
+
+  result.jobs.forEach(job => {
+
+    const li =
+      document.createElement("li");
+
+    li.innerText =
+      job;
+
+    jobsList.appendChild(li);
+
+  });
+
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+
+function restartQuiz() {
+
+  currentQuestion = 0;
+  answers = [];
+
+  document
+    .getElementById("resultScreen")
+    .classList.add("hidden");
+
+  document
+    .getElementById("startScreen")
+    .classList.remove("hidden");
+
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+
+}
+
+</script>
 
 </body>
 </html>
