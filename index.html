@@ -444,10 +444,8 @@ footer {
 <script>
 
 const questions = [
-
   {
-    question:
-      "現在のあなたに最も近いものを選んでください。",
+    question: "現在のあなたに最も近いものを選んでください。",
     options: [
       { text: "高校生・これから進学先を考える", value: "highschool" },
       { text: "大学生・専門学校生・高専生", value: "student" },
@@ -455,10 +453,8 @@ const questions = [
       { text: "保護者として進路を考えている", value: "parent" }
     ]
   },
-
   {
-    question:
-      "半導体業界で、今の時点で興味があることは何ですか？",
+    question: "半導体業界で、今の時点で興味があることは何ですか？",
     options: [
       { text: "機械や装置をつくる・組み立てる", value: "manufacturing" },
       { text: "設計・開発・研究に関わる", value: "engineering" },
@@ -467,10 +463,8 @@ const questions = [
       { text: "まだ具体的には分からない", value: "unknown" }
     ]
   },
-
   {
-    question:
-      "進路を選ぶとき、最も大切にしたいことは何ですか？",
+    question: "進路を選ぶとき、最も大切にしたいことは何ですか？",
     options: [
       { text: "専門性を深く身につけたい", value: "specialist" },
       { text: "実践的な技術を身につけたい", value: "practical" },
@@ -479,10 +473,8 @@ const questions = [
       { text: "学費や費用面も大切にしたい", value: "cost" }
     ]
   },
-
   {
-    question:
-      "学ぶ環境として、今の自分に近い希望はどれですか？",
+    question: "学ぶ環境として、今の自分に近い希望はどれですか？",
     options: [
       { text: "理論から深く学びたい", value: "theory" },
       { text: "実験や実習を多く経験したい", value: "practice" },
@@ -490,10 +482,8 @@ const questions = [
       { text: "まだ決められない", value: "undecided" }
     ]
   },
-
   {
-    question:
-      "今のあなたが一番不安に感じていることは何ですか？",
+    question: "今のあなたが一番不安に感じていることは何ですか？",
     options: [
       { text: "自分にどんな仕事が向いているか分からない", value: "fit" },
       { text: "どの学校・学部を選べばいいか分からない", value: "school" },
@@ -502,404 +492,357 @@ const questions = [
       { text: "まだ将来のイメージができていない", value: "future" }
     ]
   }
-
 ];
 
 let currentQuestion = 0;
 let answers = [];
 
+const categories = {
+  engineering: {
+    title: "技術・設計・開発を目指すタイプ",
+    summary: "仕組みを理解し、専門的な技術を深める方向に関心があるようです。機械、電気電子、材料、情報などの基礎を学び、設計・開発・研究に関わる道が候補になります。",
+    fields: "機械工学、電気電子工学、材料工学、化学、情報工学など。",
+    jobs: [
+      "半導体製造装置の設計・開発",
+      "半導体デバイスの技術開発",
+      "プロセス・生産技術",
+      "技術評価・解析"
+    ],
+    reason: "設計や開発への興味、専門性を深めたい希望、理論を学びたい希望などが、この方向性と結びついています。",
+    next: "興味のある大学・高専の学科を調べ、授業内容、研究室、卒業後の就職先を比べてみましょう。"
+  },
+  manufacturing: {
+    title: "製造・実践技術を目指すタイプ",
+    summary: "実際に装置や製品に触れながら技術を身につける方向に関心があるようです。半導体業界では、装置の組立、検査、製造、調整など、ものづくりを支える仕事があります。",
+    fields: "機械系、電気電子系、制御系、ロボット系、生産工学など。",
+    jobs: [
+      "半導体製造装置の製造・組立",
+      "装置の検査・調整",
+      "製造技術・生産技術",
+      "品質管理"
+    ],
+    reason: "ものづくりへの興味や、実習を重視する学び方、実践的な技術を身につけたい希望が、この方向性と結びついています。",
+    next: "学校の実習内容や設備、企業との連携、卒業生の就職先を調べてみましょう。"
+  },
+  software: {
+    title: "IT・データ・ソフトウェアを活かすタイプ",
+    summary: "プログラムやデータなど、デジタル技術を活用する仕事に関心があるようです。半導体業界では、装置制御、製造システム、データ分析、AI活用などの分野があります。",
+    fields: "情報工学、ソフトウェア、データサイエンス、AI、制御工学など。",
+    jobs: [
+      "製造装置のソフトウェア開発",
+      "制御システムの開発",
+      "製造データの分析",
+      "AI・ITを活用した業務改善"
+    ],
+    reason: "ITやプログラムへの興味が、半導体製造を支えるデジタル分野と結びついています。",
+    next: "情報系の学科で学べるプログラミング、制御、データ分析の内容と、半導体企業の募集職種を調べましょう。"
+  },
+  quality: {
+    title: "品質・改善・工程管理を目指すタイプ",
+    summary: "製品や工程をより良くし、安定した品質を支える仕事に関心があるようです。半導体業界では、品質管理、品質保証、工程改善などが重要な役割を担います。",
+    fields: "機械、電気電子、材料、化学、生産工学、品質管理関連分野など。",
+    jobs: [
+      "品質管理・品質保証",
+      "製造工程の改善",
+      "生産技術",
+      "製品評価・解析"
+    ],
+    reason: "品質や工程を改善したいという関心が、製造の安定性や製品の信頼性を支える仕事と結びついています。",
+    next: "品質や生産技術の仕事内容を企業の採用情報で確認し、必要な専門知識を調べてみましょう。"
+  },
+  exploration: {
+    title: "幅広く可能性を探すタイプ",
+    summary: "今は特定の仕事に絞るより、半導体業界の幅広い仕事を知ることが大切な段階のようです。興味がまだ決まっていなくても、進路選びを始めることはできます。",
+    fields: "機械、電気電子、情報、材料、化学など。複数の分野を比較してみましょう。",
+    jobs: [
+      "製造・組立",
+      "設計・開発",
+      "品質管理",
+      "生産技術",
+      "IT・ソフトウェア"
+    ],
+    reason: "仕事の方向性がまだ定まっていない場合は、複数の職種を知り、学びながら興味を見つける方法が考えられます。",
+    next: "まずは半導体業界の仕事を3種類ほど調べて、仕事内容や必要な知識を比べてみましょう。"
+  }
+};
 
 function startQuiz() {
-
   currentQuestion = 0;
   answers = [];
 
-  document
-    .getElementById("startScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("resultScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("quizScreen")
-    .classList.remove("hidden");
+  document.getElementById("startScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("quizScreen").classList.remove("hidden");
 
   showQuestion();
-
 }
 
-
 function showQuestion() {
-
   const data = questions[currentQuestion];
 
   document.getElementById("questionNumber").innerText =
     "QUESTION " + (currentQuestion + 1);
 
-  document.getElementById("questionText").innerText =
-    data.question;
+  document.getElementById("questionText").innerText = data.question;
 
   document.getElementById("progressLabel").innerText =
     "質問 " + (currentQuestion + 1) + " / " + questions.length;
 
-  const percent =
-    Math.round(
-      ((currentQuestion + 1) / questions.length) * 100
-    );
+  const percent = Math.round(
+    ((currentQuestion + 1) / questions.length) * 100
+  );
 
-  document.getElementById("progressPercent").innerText =
-    percent + "%";
+  document.getElementById("progressPercent").innerText = percent + "%";
+  document.getElementById("progressBar").style.width = percent + "%";
 
-  document.getElementById("progressBar").style.width =
-    percent + "%";
-
-  const optionsContainer =
-    document.getElementById("options");
-
+  const optionsContainer = document.getElementById("options");
   optionsContainer.innerHTML = "";
 
   data.options.forEach(option => {
+    const button = document.createElement("button");
+    button.className = "option-button";
+    button.innerText = option.text;
 
-    const button =
-      document.createElement("button");
-
-    button.className =
-      "option-button";
-
-    button.innerText =
-      option.text;
-
-    button.onclick = () =>
-      selectAnswer(option.value);
+    button.onclick = () => selectAnswer(option.value);
 
     optionsContainer.appendChild(button);
-
   });
 
-
-  if (currentQuestion === 0) {
-
-    document
-      .getElementById("backButton")
-      .classList.add("hidden");
-
-  } else {
-
-    document
-      .getElementById("backButton")
-      .classList.remove("hidden");
-
-  }
-
+  document.getElementById("backButton").classList.toggle(
+    "hidden",
+    currentQuestion === 0
+  );
 }
 
-
 function selectAnswer(value) {
-
   answers[currentQuestion] = value;
 
   if (currentQuestion < questions.length - 1) {
-
     currentQuestion++;
-
     showQuestion();
 
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth"
-    });
-
+    window.scrollTo({ top: 0, behavior: "smooth" });
   } else {
-
     showResult();
-
   }
-
 }
-
 
 function goBack() {
-
   if (currentQuestion > 0) {
-
     currentQuestion--;
-
     showQuestion();
-
   }
-
 }
 
-
-function showResult() {
-
-  document
-    .getElementById("quizScreen")
-    .classList.add("hidden");
-
-  document
-    .getElementById("resultScreen")
-    .classList.remove("hidden");
-
+function calculateScores() {
+  const scores = {
+    engineering: 0,
+    manufacturing: 0,
+    software: 0,
+    quality: 0,
+    exploration: 0
+  };
 
   const interest = answers[1];
   const priority = answers[2];
   const environment = answers[3];
   const concern = answers[4];
 
+  // 質問2：興味を最も強く反映
+  const interestMap = {
+    engineering: "engineering",
+    manufacturing: "manufacturing",
+    software: "software",
+    quality: "quality",
+    unknown: "exploration"
+  };
 
-  let result;
+  scores[interestMap[interest]] += 4;
 
-
-  if (
-    interest === "engineering" ||
-    priority === "specialist" ||
-    environment === "theory"
-  ) {
-
-    result = {
-
-      title:
-        "技術・設計・開発を目指すタイプ",
-
-      summary:
-        "仕組みを理解し、専門的な技術を深く身につける進路との相性が比較的高いタイプです。半導体そのものだけでなく、機械・電気電子・情報・材料などの基礎分野から業界につながるルートも考えられます。",
-
-      route:
-        "大学や高等専門学校などで、工学系の専門分野を学びながら、設計・開発・技術職につながる進路を比較することが有力な候補です。",
-
-      field:
-        "機械工学、電気電子工学、情報工学、材料工学、化学系など。興味のある仕事内容から逆算して選ぶことが大切です。",
-
-      jobs: [
-        "半導体製造装置の設計・開発",
-        "半導体デバイスの技術開発",
-        "生産技術・プロセス技術",
-        "品質・解析・評価に関わる技術職"
-      ],
-
-      reason:
-        "専門性を深めたいという回答と、仕組みを理解しながら技術に関わりたいという方向性が重なっているためです。",
-
-      advice:
-        "学校名だけで決めるより、「卒業後にどの仕事へ進めるか」を先に確認してください。学部・学科の名前と、実際に学ぶ内容、卒業生の進路を一緒に見ることが重要です。"
-
-    };
-
+  // 質問3：進路選択で重視すること
+  if (priority === "specialist") {
+    scores.engineering += 2;
+    scores.software += 1;
   }
 
-
-  else if (
-    interest === "manufacturing" ||
-    priority === "practical" ||
-    environment === "practice" ||
-    environment === "early"
-  ) {
-
-    result = {
-
-      title:
-        "実践技術・ものづくりを目指すタイプ",
-
-      summary:
-        "実際に装置や製品に触れながら技術を身につける進路との相性が比較的高いタイプです。半導体業界には、研究・設計だけではなく、製造、組立、検査、品質、生産技術など、多くの仕事があります。",
-
-      route:
-        "高等専門学校や専門的な実習を重視する教育機関、工学系の学校などを比較し、学べる内容と卒業後の就職先を確認する進路が有力です。",
-
-      field:
-        "機械系、電気電子系、制御系、ロボット系、製造技術系など。学校によって実習内容が大きく異なります。",
-
-      jobs: [
-        "半導体製造装置の製造・組立",
-        "装置の検査・調整",
-        "品質管理・品質保証",
-        "生産技術・製造技術"
-      ],
-
-      reason:
-        "理論だけでなく、実際のものづくりや技術を身につけたいという方向性が強いためです。",
-
-      advice:
-        "学校を選ぶときは、設備の新しさだけではなく、「何を実習するのか」「卒業後にどのような企業へ進んでいるのか」を必ず確認してください。"
-
-    };
-
+  if (priority === "practical") {
+    scores.manufacturing += 2;
+    scores.quality += 1;
   }
 
-
-  else if (
-    interest === "software"
-  ) {
-
-    result = {
-
-      title:
-        "IT・データ・デジタル技術を活かすタイプ",
-
-      summary:
-        "半導体業界の中でも、ソフトウェア、データ、AI、制御技術など、デジタル分野とつながる進路を検討しやすいタイプです。",
-
-      route:
-        "情報工学やコンピュータ関連分野を学びながら、半導体企業や製造装置企業の技術職につながるルートを比較することが候補になります。",
-
-      field:
-        "情報工学、ソフトウェア、AI、データサイエンス、制御工学など。",
-
-      jobs: [
-        "製造装置のソフトウェア開発",
-        "制御システムに関わる技術職",
-        "データ分析・AI活用",
-        "半導体関連企業のIT技術職"
-      ],
-
-      reason:
-        "プログラムやITに関心があり、半導体産業をデジタル技術の側面から支える仕事と相性があるためです。",
-
-      advice:
-        "「半導体学科」という名前だけに限定せず、情報系から半導体業界へ進むルートも含めて比較してください。"
-
-    };
-
+  if (priority === "employment") {
+    scores.manufacturing += 1;
+    scores.quality += 1;
+    scores.exploration += 1;
   }
 
-
-  else if (
-    interest === "quality"
-  ) {
-
-    result = {
-
-      title:
-        "品質・改善・ものづくりを支えるタイプ",
-
-      summary:
-        "製品をより良くすることや、安定した品質を維持することに関わる仕事との相性を考えやすいタイプです。半導体産業では、品質と安定した製造が重要な仕事になります。",
-
-      route:
-        "工学系の基礎を学びながら、品質、生産技術、製造プロセスなどにつながる進路を検討することが候補になります。",
-
-      field:
-        "機械、電気電子、材料、化学、生産工学、品質管理に関連する分野。",
-
-      jobs: [
-        "品質管理",
-        "品質保証",
-        "生産技術",
-        "製造プロセスの改善"
-      ],
-
-      reason:
-        "製品や工程を改善することへの関心が、半導体産業の品質・生産分野とつながるためです。",
-
-      advice:
-        "職種名だけでは仕事内容が分かりにくいことがあります。企業の採用情報や仕事内容を確認し、「実際に何を改善する仕事なのか」まで比較してください。"
-
-    };
-
+  if (priority === "options") {
+    scores.engineering += 1;
+    scores.software += 1;
+    scores.exploration += 1;
   }
 
-
-  else {
-
-    result = {
-
-      title:
-        "まだ決めていない人のための探索タイプ",
-
-      summary:
-        "今の段階で具体的な仕事を決めていなくても問題ありません。半導体業界には幅広い職種があり、まずは自分が何に興味を持てるかを知ることから始められます。",
-
-      route:
-        "選択肢を広く残せる工学系や技術系の進路を比較しながら、学校で学べる内容と卒業後の就職先を確認していく方法が候補になります。",
-
-      field:
-        "機械、電気電子、情報、材料、化学など。まずは仕事内容とのつながりを理解することが重要です。",
-
-      jobs: [
-        "製造・組立",
-        "設計・開発",
-        "品質管理",
-        "生産技術",
-        "IT・ソフトウェア関連"
-      ],
-
-      reason:
-        "進路が決まっていない段階では、無理に一つへ絞るより、複数の仕事を知ってから判断するほうが選びやすいためです。",
-
-      advice:
-        "「やりたいことが決まってから学校を選ぶ」のではなく、「どんな仕事があるかを知り、その中から興味を探す」という順番でも大丈夫です。"
-
-    };
-
+  if (priority === "cost") {
+    scores.exploration += 1;
+    scores.manufacturing += 1;
   }
 
+  // 質問4：学び方の希望
+  if (environment === "theory") {
+    scores.engineering += 2;
+    scores.software += 1;
+  }
+
+  if (environment === "practice") {
+    scores.manufacturing += 2;
+    scores.quality += 1;
+  }
+
+  if (environment === "early") {
+    scores.manufacturing += 2;
+    scores.quality += 1;
+  }
+
+  if (environment === "undecided") {
+    scores.exploration += 2;
+  }
+
+  // 質問5：不安や悩みも診断に反映
+  if (concern === "fit" || concern === "future") {
+    scores.exploration += 2;
+  }
+
+  if (concern === "school") {
+    scores.engineering += 1;
+    scores.manufacturing += 1;
+    scores.exploration += 1;
+  }
+
+  if (concern === "job") {
+    scores.manufacturing += 1;
+    scores.quality += 1;
+    scores.software += 1;
+  }
+
+  if (concern === "money") {
+    scores.exploration += 1;
+    scores.manufacturing += 1;
+  }
+
+  return scores;
+}
+
+function getRoute(stage, priority, environment) {
+  if (stage === "parent") {
+    return "まずは本人の興味や希望を確認し、大学・高専・専門学校・就職の違いを一緒に比較しましょう。学費、通学地域、卒業後の進路、奨学金なども確認することが大切です。";
+  }
+
+  if (stage === "highschool") {
+    if (priority === "cost") {
+      return "大学・高専・専門学校・就職の各ルートについて、入学金、授業料、通学費、奨学金や授業料支援制度を比較しましょう。費用だけでなく、卒業後の進路も合わせて確認してください。";
+    }
+
+    if (environment === "practice" || environment === "early") {
+      return "高専・専門学校・実習を重視する大学などを比較しましょう。実習内容や企業との連携、卒業後の就職実績が判断材料になります。";
+    }
+
+    return "大学・高専・専門学校を比較し、学べる分野と卒業後の職種を確認しましょう。大学では専門分野を幅広く学び、研究や開発を目指す道もあります。";
+  }
+
+  if (stage === "student") {
+    return "現在の学校で学んでいる専門分野を、半導体業界のどの職種に活かせるか整理しましょう。研究室、実習、インターンシップ、企業説明会などを活用する方法があります。";
+  }
+
+  return "これまでの仕事や学習経験を整理し、半導体業界の求人にある応募条件と照らし合わせましょう。経験を活かせる職種から調べ、必要に応じて基礎知識や資格を補う方法が考えられます。";
+}
+
+function getConcernAdvice(concern, priority) {
+  if (concern === "fit") {
+    return "仕事内容を知ることから始めましょう。装置をつくる仕事、設計する仕事、品質を守る仕事などを比べると、自分の関心が見つかりやすくなります。";
+  }
+
+  if (concern === "school") {
+    return "学校名だけで判断せず、学科の授業内容、実験・実習、研究内容、卒業後の就職先を確認しましょう。";
+  }
+
+  if (concern === "job") {
+    return "企業の採用ページで職種別の応募条件を確認しましょう。学部・学科と募集職種の関係、インターンシップや学校推薦の有無も参考になります。";
+  }
+
+  if (concern === "money" || priority === "cost") {
+    return "入学金・授業料・教材費・通学費を含めて総額を比較しましょう。奨学金や授業料支援制度は、学校や公的機関の最新情報を確認してください。";
+  }
+
+  return "最初から将来を一つに決める必要はありません。複数の仕事を知り、学校で学べる内容と結びつけながら、少しずつ選択肢を絞っていきましょう。";
+}
+
+function showResult() {
+  document.getElementById("quizScreen").classList.add("hidden");
+  document.getElementById("resultScreen").classList.remove("hidden");
+
+  const scores = calculateScores();
+
+  const ranking = Object.entries(scores).sort((a, b) => b[1] - a[1]);
+
+  const primaryKey = ranking[0][0];
+  const secondaryKey = ranking[1][0];
+
+  const result = categories[primaryKey];
+  const secondary = categories[secondaryKey];
+
+  const stage = answers[0];
+  const priority = answers[2];
+  const environment = answers[3];
+  const concern = answers[4];
+
+  let stageLabel = "";
+
+  if (stage === "highschool") stageLabel = "高校生向け";
+  if (stage === "student") stageLabel = "在学生向け";
+  if (stage === "career") stageLabel = "社会人・転職検討者向け";
+  if (stage === "parent") stageLabel = "保護者向け";
 
   document.getElementById("resultTitle").innerText =
     result.title;
 
   document.getElementById("resultSummary").innerText =
-    result.summary;
+    stageLabel + "の診断結果です。" + result.summary;
 
   document.getElementById("resultRoute").innerText =
-    result.route;
+    getRoute(stage, priority, environment);
 
   document.getElementById("resultField").innerText =
-    result.field;
+    result.fields;
 
   document.getElementById("resultReason").innerText =
-    result.reason;
+    result.reason +
+    " なお、2番目の候補は「" + secondary.title +
+    "」です。こちらの仕事も比較すると、進路の可能性を広げられます。";
 
   document.getElementById("resultAdvice").innerText =
-    result.advice;
+    getConcernAdvice(concern, priority) +
+    " " + result.next;
 
-
-  const jobsList =
-    document.getElementById("resultJobs");
-
+  const jobsList = document.getElementById("resultJobs");
   jobsList.innerHTML = "";
 
   result.jobs.forEach(job => {
-
-    const li =
-      document.createElement("li");
-
-    li.innerText =
-      job;
-
+    const li = document.createElement("li");
+    li.innerText = job;
     jobsList.appendChild(li);
-
   });
 
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-
 function restartQuiz() {
-
   currentQuestion = 0;
   answers = [];
 
-  document
-    .getElementById("resultScreen")
-    .classList.add("hidden");
+  document.getElementById("resultScreen").classList.add("hidden");
+  document.getElementById("startScreen").classList.remove("hidden");
 
-  document
-    .getElementById("startScreen")
-    .classList.remove("hidden");
-
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-  });
-
+  window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
 </script>
