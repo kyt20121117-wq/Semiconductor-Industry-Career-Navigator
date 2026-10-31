@@ -82,6 +82,295 @@ footer{text-align:center;color:#80909a;font-size:12px;padding:22px}
 .rank-card:nth-child(n+6) .meta,.rank-card:nth-child(n+6) p{display:none}
 .rank-card:nth-child(n+6) h4{font-size:15px!important}
 .official-top{display:inline-block;margin-top:8px;padding:9px 12px;border-radius:10px;background:#0b2742;color:#fff!important;text-decoration:none!important;font-weight:900}
+/* =========================================
+   PREMIUM CAREER REPORT / BEST 1・2・3
+========================================= */
+
+.personal-report{
+  background:linear-gradient(135deg,#0b2742 0%,#1464a0 55%,#0b8f87 100%);
+  border-radius:20px;
+  padding:24px 20px;
+  color:#fff;
+  margin-bottom:20px;
+  box-shadow:0 10px 30px rgba(11,39,66,.18);
+}
+
+.personal-report-label{
+  display:inline-block;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.08em;
+  background:rgba(255,255,255,.16);
+  border:1px solid rgba(255,255,255,.25);
+  border-radius:30px;
+  padding:6px 10px;
+}
+
+.personal-report h2{
+  margin:12px 0 8px;
+  font-size:26px;
+  line-height:1.45;
+  color:#fff;
+}
+
+.personal-report p{
+  margin:0;
+  line-height:1.8;
+  color:#eaf5fb;
+}
+
+.personal-best{
+  margin-top:18px;
+  background:rgba(255,255,255,.12);
+  border-radius:15px;
+  padding:15px;
+}
+
+.personal-best small{
+  display:block;
+  font-weight:800;
+  opacity:.85;
+  margin-bottom:4px;
+}
+
+.personal-best-name{
+  font-size:22px;
+  font-weight:950;
+}
+
+/* =========================
+   ランキングカード共通
+========================= */
+
+.rank-card{
+  position:relative;
+  overflow:hidden;
+}
+
+.rank-card.top1{
+  padding:22px !important;
+  border:2px solid #d9aa29 !important;
+  background:
+    linear-gradient(135deg,#fff4c7 0%,#fffdf6 45%,#fff6da 100%) !important;
+  box-shadow:0 12px 35px rgba(194,138,36,.20) !important;
+}
+
+.rank-card.top2{
+  border:2px solid #b8c3cc !important;
+  background:linear-gradient(135deg,#eef2f5,#ffffff) !important;
+}
+
+.rank-card.top3{
+  border:2px solid #dca06f !important;
+  background:linear-gradient(135deg,#fff0e5,#fffaf7) !important;
+}
+
+/* =========================
+   BEST1 大型デザイン
+========================= */
+
+.best1-hero{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:14px;
+}
+
+.best1-medal{
+  width:58px;
+  height:58px;
+  min-width:58px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:50%;
+  font-size:30px;
+  background:linear-gradient(135deg,#ffe998,#d99b14);
+  box-shadow:0 5px 15px rgba(194,138,36,.25);
+}
+
+.best1-title{
+  flex:1;
+}
+
+.best1-kicker{
+  font-size:12px;
+  font-weight:950;
+  color:#8a5b00;
+  letter-spacing:.05em;
+}
+
+.best1-name{
+  font-size:23px !important;
+  margin-top:3px !important;
+  color:#12385b !important;
+}
+
+.best1-fit-box{
+  background:rgba(255,255,255,.75);
+  border-radius:16px;
+  padding:16px;
+  margin:14px 0;
+  text-align:center;
+  border:1px solid rgba(217,170,41,.35);
+}
+
+.best1-fit-label{
+  font-size:12px;
+  font-weight:900;
+  color:#80570e;
+}
+
+.best1-fit-number{
+  font-size:48px;
+  line-height:1;
+  font-weight:950;
+  color:#c28a24;
+  margin:5px 0 10px;
+}
+
+.best1-fit-number span{
+  font-size:18px;
+}
+
+.best1-fit-track{
+  height:15px;
+  background:#e7ddbf;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.best1-fit-bar{
+  height:100%;
+  border-radius:999px;
+  background:linear-gradient(90deg,#f4c542,#c98b00);
+}
+
+/* =========================
+   BEST2・BEST3
+========================= */
+
+.best-rank-header{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.best-medal{
+  font-size:28px;
+}
+
+.best-rank-title{
+  font-size:13px;
+  font-weight:950;
+  color:var(--navy);
+}
+
+.best-rank-sub{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:2px;
+}
+
+/* =========================
+   理由・一致ポイント
+========================= */
+
+.why-best{
+  margin-top:15px;
+  padding:15px;
+  border-radius:13px;
+  background:rgba(255,255,255,.70);
+}
+
+.why-best-title{
+  font-size:15px;
+  font-weight:950;
+  color:var(--navy);
+  margin-bottom:9px;
+}
+
+.match-points{
+  display:grid;
+  gap:7px;
+  margin-top:10px;
+}
+
+.match-point{
+  background:#eef7fb;
+  border-radius:9px;
+  padding:9px 11px;
+  font-size:13px;
+  font-weight:750;
+  color:#36505f;
+}
+
+.match-point b{
+  color:#0b8f87;
+  margin-right:6px;
+}
+
+.compare-box{
+  margin-top:13px;
+  border-radius:12px;
+  padding:14px;
+  background:#f5f8fa;
+  font-size:13px;
+  line-height:1.75;
+  color:#50616d;
+}
+
+.compare-box b{
+  color:var(--navy);
+}
+
+/* =========================
+   公式サイトボタン
+========================= */
+
+.official-top{
+  display:block !important;
+  width:100%;
+  text-align:center;
+  margin-top:16px !important;
+  padding:13px 15px !important;
+  border-radius:12px !important;
+  font-size:14px !important;
+  background:linear-gradient(135deg,#12385b,#176b9c) !important;
+  box-shadow:0 5px 15px rgba(18,56,91,.15);
+}
+
+/* =========================
+   モバイル
+========================= */
+
+@media(max-width:560px){
+
+  .personal-report h2{
+    font-size:22px;
+  }
+
+  .best1-name{
+    font-size:20px !important;
+  }
+
+  .best1-fit-number{
+    font-size:42px;
+  }
+
+  .best1-medal{
+    width:52px;
+    height:52px;
+    min-width:52px;
+    font-size:27px;
+  }
+
+  .rank-card.top1{
+    padding:18px !important;
+  }
+
+}
 </style>
 </head>
 <body>
@@ -191,6 +480,7 @@ const companies=[
 
 const categoryNames={device:"デバイス・材料・プロセス研究型",equipment:"製造装置・機械電気設計型",production:"製造・生産技術・現場実践型",software:"ソフトウェア・AI・データ活用型",quality:"品質・工程改善型",explore:"幅広く比較して進路を決める探索型"};
 let current=0,answers=[];
+let currentProfile={};
 function startQuiz(){current=0;answers=[];document.getElementById("startScreen").classList.add("hidden");document.getElementById("resultScreen").classList.add("hidden");document.getElementById("quizScreen").classList.remove("hidden");showQuestion();window.scrollTo(0,0)}
 function showQuestion(){const q=questions[current];document.getElementById("questionGroup").textContent=q.group;document.getElementById("questionNumber").textContent="QUESTION "+(current+1);document.getElementById("questionText").textContent=q.q;document.getElementById("progressLabel").textContent=`質問 ${current+1} / ${questions.length}`;let p=Math.round((current+1)/questions.length*100);document.getElementById("progressPercent").textContent=p+"%";document.getElementById("progressBar").style.width=p+"%";let box=document.getElementById("options");box.innerHTML="";q.o.forEach(([label,value])=>{let b=document.createElement("button");b.className="option";b.textContent=label;b.onclick=()=>choose(value);box.appendChild(b)});document.getElementById("backButton").classList.toggle("hidden",current===0)}
 function choose(v){answers[current]=v;if(current<questions.length-1){current++;showQuestion();window.scrollTo({top:0,behavior:"smooth"})}else showResult()}
@@ -213,21 +503,471 @@ function routeScore(item){let r=answers[1];if(r==="unsure")return 1;if(item.rout
 function schoolScore(item,profile){let best=Object.entries(profile).sort((a,b)=>b[1]-a[1])[0][0];let score=0;item.fields.forEach(t=>{if(t===best)score+=4;if(profile[t])score+=Math.min(2,profile[t]*.35)});score+=regionScore(item);score+=routeScore(item);if(answers[3]==="local"&&item.region!==answers[2])score-=3;if(answers[16]==="lowcost")score+=item.type==="国立大学"?3:0;if(answers[16]==="private"&&item.type==="私立大学")score+=2;return score}
 function companyScore(item,profile){let score=0;item.tags.forEach(t=>{if(profile[t])score+=Math.min(4,profile[t]*.65)});const pref=answers[17];if(pref==="rcompany"&&["半導体デバイス","メモリ半導体"].includes(item.area))score+=3;if(pref==="ecompany"&&item.area.includes("装置"))score+=3;if(pref==="mcompany"&&["半導体製造","メモリ半導体"].includes(item.area))score+=3;if(pref==="scompany"&&item.tags.includes("software"))score+=3;return score}
 function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
-function renderRanks(items,container,kind){
- const max=Math.max(...items.map(x=>x.score),1);
- const min=Math.min(...items.map(x=>x.score));
- let html="";
- items.forEach((it,i)=>{
-   const fit=Math.round(68+((it.score-min)/Math.max(1,max-min))*29);
-   const rank=i<5?`BEST ${i+1}`:`候補 ${i+1}`;
-   const cls=i===0?"top1":i===1?"top2":i===2?"top3":"";
-   const detail=kind==="school"?`${it.type}｜${it.region==="north"?"北海道・東北":it.region==="east"?"関東・甲信越":it.region==="central"?"東海・北陸":it.region==="west"?"近畿":it.region==="chugoku"?"中国・四国":"九州・沖縄"}`:`領域：${it.area}`;
-   const link=i<3?`<a class="official-top" href="${it.url}" target="_blank" rel="noopener">公式サイトを見る ↗</a>`:"";
-   html+=`<article class="rank-card ${cls}"><div class="rank-top"><span class="rank ${i===0?"best":""}">${rank}</span><h4>${esc(it.name)}</h4></div><div class="fitline"><span class="fitnum">${fit}%</span><div class="fittrack"><div class="fitbar" style="width:${fit}%"></div></div></div><div class="meta">${esc(detail)}</div><p><b>推薦理由：</b>${esc(it.why)}</p>${kind==="company"?`<p><b>想定される仕事：</b>${esc(it.jobs)}</p>`:""}${link}</article>`;
- });
- document.getElementById(container).innerHTML=html;
-} 
-function showResult(){document.getElementById("quizScreen").classList.add("hidden");document.getElementById("resultScreen").classList.remove("hidden");const s=scoreProfile();const sorted=Object.entries(s).sort((a,b)=>b[1]-a[1]);const top=sorted[0][0],second=sorted[1][0];const labels={device:"デバイス・材料・プロセス研究",equipment:"製造装置・機械電気設計",production:"製造・生産技術・現場実践",software:"ソフトウェア・AI・データ",quality:"品質・工程改善",explore:"幅広く比較する探索"};document.getElementById("resultTitle").textContent=labels[top]+"型が第一候補です";document.getElementById("resultSummary").textContent=`20問の回答では「${labels[top]}」との一致が最も多く、次点は「${labels[second]}」です。興味だけでなく、学び方・仕事環境・進路条件も加味して候補を整理しました。`;
+function getMatchPoints(kind, profile, item){
+
+  const topProfile = Object.entries(profile)
+    .sort((a,b)=>b[1]-a[1])
+    .map(x=>x[0]);
+
+  const points = [];
+
+  const answerMap = {
+    device: "半導体そのもの・デバイス・材料に興味",
+    equipment: "半導体製造装置に強い関心",
+    production: "製造・生産技術・現場に関心",
+    software: "ソフトウェア・AI・データに関心",
+    quality: "品質・工程改善に関心",
+    math: "数学・物理などの基礎分野に興味",
+    chem: "化学・材料分野に興味",
+    mech: "機械・電気・技術分野に興味",
+    electric: "電子回路・電気の仕組みに興味",
+    material: "材料・表面・物性に興味",
+    practice: "実験・実習・実物に触れて学びたい",
+    research: "専門性を深めて研究したい",
+    design: "装置・機械・電気の設計開発を目指したい",
+    hands: "実物を組み立て動作を確かめる仕事に興味",
+    factory: "工場の製造・工程に興味"
+  };
+
+  const tags = kind === "school"
+    ? item.fields
+    : item.tags;
+
+  tags.forEach(tag => {
+
+    if(points.length >= 4) return;
+
+    if(answerMap[tag] && answers.includes(tag)){
+      points.push(answerMap[tag]);
+    }
+
+  });
+
+  topProfile.forEach(tag => {
+
+    if(points.length >= 4) return;
+
+    if(tags.includes(tag) && answerMap[tag]){
+      if(!points.includes(answerMap[tag])){
+        points.push(answerMap[tag]);
+      }
+    }
+
+  });
+
+  if(points.length < 3){
+
+    if(answers[3] === "flexible" || answers[3] === "move"){
+      points.push("進学・就職先を幅広い地域から検討できる");
+    }
+
+    if(answers[8] === "practice"){
+      points.push("実習・実践的な学び方を重視");
+    }
+
+    if(answers[10] === "advanced"){
+      points.push("将来は高度な専門性も視野に入れている");
+    }
+
+  }
+
+  const uniquePoints = [...new Set(points)];
+
+  return uniquePoints.slice(0,4);
+}
+
+
+function getBestDifference(rank, kind, item, bestItem){
+
+  if(rank === 1){
+
+    return kind === "school"
+      ? "BEST1と比べて、学びたい専門分野や地域条件がより合う場合はこちらも有力な選択肢です。"
+      : "BEST1とは異なる技術領域に強みがあります。仕事内容を比較して、興味が続く分野か確認してください。";
+
+  }
+
+  if(rank === 2){
+
+    return kind === "school"
+      ? "条件次第ではBEST1・BEST2より向いている可能性があります。学費、地域、学び方も含めて比較してください。"
+      : "希望する仕事内容や専門分野によっては、BEST1よりこちらが適する可能性があります。";
+
+  }
+
+  return "";
+}
+
+
+function getRankTitle(rank){
+
+  if(rank === 0){
+    return {
+      medal:"🥇",
+      label:"👑 あなたへの最有力候補",
+      sub:"診断結果から最も一致度が高い候補"
+    };
+  }
+
+  if(rank === 1){
+    return {
+      medal:"🥈",
+      label:"BEST 2｜有力な選択肢",
+      sub:"BEST1と比較して検討したい候補"
+    };
+  }
+
+  if(rank === 2){
+    return {
+      medal:"🥉",
+      label:"BEST 3｜条件次第でおすすめ",
+      sub:"進路条件によって有力になる候補"
+    };
+  }
+
+  return null;
+}
+
+
+function renderRanks(items, container, kind){
+
+  const max = Math.max(...items.map(x => x.score), 1);
+  const min = Math.min(...items.map(x => x.score));
+
+  let html = "";
+
+  items.forEach((it, i) => {
+
+    const fit = Math.round(
+      68 + ((it.score - min) / Math.max(1, max - min)) * 29
+    );
+
+    const cls =
+      i === 0 ? "top1" :
+      i === 1 ? "top2" :
+      i === 2 ? "top3" : "";
+
+    const detail = kind === "school"
+      ? `${it.type}｜${
+          it.region === "north" ? "北海道・東北" :
+          it.region === "east" ? "関東・甲信越" :
+          it.region === "central" ? "東海・北陸" :
+          it.region === "west" ? "近畿" :
+          it.region === "chugoku" ? "中国・四国" :
+          "九州・沖縄"
+        }`
+      : `領域：${it.area}`;
+
+    /* =====================
+       🥇 BEST1
+    ===================== */
+
+    if(i === 0){
+
+      const points = getMatchPoints(kind, currentProfile, it);
+
+      html += `
+      <article class="rank-card top1">
+
+        <div class="best1-hero">
+
+          <div class="best1-medal">👑</div>
+
+          <div class="best1-title">
+            <div class="best1-kicker">🥇 BEST 1</div>
+            <h4 class="best1-name">${esc(it.name)}</h4>
+          </div>
+
+        </div>
+
+        <div class="meta">${esc(detail)}</div>
+
+        <div class="best1-fit-box">
+
+          <div class="best1-fit-label">
+            あなたとの適合度
+          </div>
+
+          <div class="best1-fit-number">
+            ${fit}<span>%</span>
+          </div>
+
+          <div class="best1-fit-track">
+            <div
+              class="best1-fit-bar"
+              style="width:${fit}%"
+            ></div>
+          </div>
+
+        </div>
+
+        <div class="why-best">
+
+          <div class="why-best-title">
+            👑 なぜあなたにBEST1なのか？
+          </div>
+
+          <p>
+            ${esc(it.why)}
+          </p>
+
+          <div class="why-best-title" style="margin-top:14px">
+            ✓ あなたの回答との一致ポイント
+          </div>
+
+          <div class="match-points">
+
+            ${points.map(point => `
+              <div class="match-point">
+                <b>✓</b>${esc(point)}
+              </div>
+            `).join("")}
+
+          </div>
+
+        </div>
+
+        ${
+          kind === "company"
+          ? `
+          <div class="compare-box">
+            <b>想定される仕事</b><br>
+            ${esc(it.jobs)}
+          </div>
+          `
+          : ""
+        }
+
+        <a
+          class="official-top"
+          href="${it.url}"
+          target="_blank"
+          rel="noopener"
+        >
+          ${esc(it.name)}の公式サイトを見る ↗
+        </a>
+
+      </article>
+      `;
+
+      return;
+    }
+
+
+    /* =====================
+       🥈 BEST2
+    ===================== */
+
+    if(i === 1){
+
+      const info = getRankTitle(i);
+
+      html += `
+      <article class="rank-card top2">
+
+        <div class="best-rank-header">
+
+          <div class="best-medal">${info.medal}</div>
+
+          <div>
+            <div class="best-rank-title">
+              ${info.label}
+            </div>
+
+            <div class="best-rank-sub">
+              ${info.sub}
+            </div>
+          </div>
+
+        </div>
+
+        <h4>${esc(it.name)}</h4>
+
+        <div class="fitline">
+          <span class="fitnum">${fit}%</span>
+          <div class="fittrack">
+            <div
+              class="fitbar"
+              style="width:${fit}%"
+            ></div>
+          </div>
+        </div>
+
+        <div class="meta">${esc(detail)}</div>
+
+        <p>
+          <b>なぜ有力なのか：</b>
+          ${esc(it.why)}
+        </p>
+
+        <div class="compare-box">
+          <b>🥇 BEST1との違い</b><br>
+          ${esc(getBestDifference(i, kind, it, items[0]))}
+        </div>
+
+        ${
+          kind === "company"
+          ? `
+          <p>
+            <b>想定される仕事：</b>
+            ${esc(it.jobs)}
+          </p>
+          `
+          : ""
+        }
+
+        <a
+          class="official-top"
+          href="${it.url}"
+          target="_blank"
+          rel="noopener"
+        >
+          公式サイトを見る ↗
+        </a>
+
+      </article>
+      `;
+
+      return;
+    }
+
+
+    /* =====================
+       🥉 BEST3
+    ===================== */
+
+    if(i === 2){
+
+      const info = getRankTitle(i);
+
+      html += `
+      <article class="rank-card top3">
+
+        <div class="best-rank-header">
+
+          <div class="best-medal">${info.medal}</div>
+
+          <div>
+            <div class="best-rank-title">
+              ${info.label}
+            </div>
+
+            <div class="best-rank-sub">
+              ${info.sub}
+            </div>
+          </div>
+
+        </div>
+
+        <h4>${esc(it.name)}</h4>
+
+        <div class="fitline">
+          <span class="fitnum">${fit}%</span>
+          <div class="fittrack">
+            <div
+              class="fitbar"
+              style="width:${fit}%"
+            ></div>
+          </div>
+        </div>
+
+        <div class="meta">${esc(detail)}</div>
+
+        <p>
+          <b>おすすめする理由：</b>
+          ${esc(it.why)}
+        </p>
+
+        <div class="compare-box">
+          <b>🥉 こんな場合はこちらもおすすめ</b><br>
+          ${esc(getBestDifference(i, kind, it, items[0]))}
+        </div>
+
+        ${
+          kind === "company"
+          ? `
+          <p>
+            <b>想定される仕事：</b>
+            ${esc(it.jobs)}
+          </p>
+          `
+          : ""
+        }
+
+        <a
+          class="official-top"
+          href="${it.url}"
+          target="_blank"
+          rel="noopener"
+        >
+          公式サイトを見る ↗
+        </a>
+
+      </article>
+      `;
+
+      return;
+    }
+
+
+    /* =====================
+       4位以降
+    ===================== */
+
+    const rank = i < 5 ? `BEST ${i+1}` : `候補 ${i+1}`;
+
+    html += `
+    <article class="rank-card">
+
+      <div class="rank-top">
+
+        <span class="rank">
+          ${rank}
+        </span>
+
+        <h4>${esc(it.name)}</h4>
+
+      </div>
+
+      ${
+        i < 5
+        ? `
+        <div class="fitline">
+
+          <span class="fitnum">
+            ${fit}%
+          </span>
+
+          <div class="fittrack">
+            <div
+              class="fitbar"
+              style="width:${fit}%"
+            ></div>
+          </div>
+
+        </div>
+        `
+        : ""
+      }
+
+      <div class="meta">
+        ${esc(detail)}
+      </div>
+
+      <p>
+        <b>推薦理由：</b>
+        ${esc(it.why)}
+      </p>
+
+    </article>
+    `;
+
+  });
+
+  document.getElementById(container).innerHTML = html;
+
+}
+function showResult(){document.getElementById("quizScreen").classList.add("hidden");currentProfile = scoreProfile();document.getElementById("resultScreen").classList.remove("hidden");const s=currentProfile;const sorted=Object.entries(s).sort((a,b)=>b[1]-a[1]);const top=sorted[0][0],second=sorted[1][0];const labels={device:"デバイス・材料・プロセス研究",equipment:"製造装置・機械電気設計",production:"製造・生産技術・現場実践",software:"ソフトウェア・AI・データ",quality:"品質・工程改善",explore:"幅広く比較する探索"};document.getElementById("resultTitle").textContent=labels[top]+"型が第一候補です";document.getElementById("resultSummary").textContent=`20問の回答では「${labels[top]}」との一致が最も多く、次点は「${labels[second]}」です。興味だけでなく、学び方・仕事環境・進路条件も加味して候補を整理しました。`;
 const max=Math.max(...Object.values(s),1);document.getElementById("scoreList").innerHTML=sorted.map(([k,v])=>`<div class="score-row"><b>${labels[k]}</b><div class="bar"><span style="width:${Math.max(3,v/max*100)}%"></span></div><b>${v}点</b></div>`).join("");
 document.getElementById("scoreExplanation").textContent=`第一候補は「${labels[top]}」、第二候補は「${labels[second]}」です。これは回答内容の傾向を点数化した相対評価です。能力や将来を固定的に判定するものではありません。`;
 let route=answers[0]==="career"||answers[1]==="reskill"?"社会人の場合は、現在の経験を活かせる職種から検討します。機械・電気・情報・品質・製造などの経験を棚卸しし、未経験分野は基礎学習や職業訓練、企業の研修制度を確認してください。":answers[0]==="parent"?"本人の希望を中心に、大学・高専・専門学校の学び方と卒業後の職種を並べて比較する進め方が適しています。":answers[1]==="vocational"?"実習設備、資格、企業連携、就職実績を重視して専門学校を比較し、大学・高専との違いも確認してください。":answers[1]==="graduate"?"現在の専攻・研究・実習経験を応募職種に結び付け、研究開発・装置技術・製造技術・品質・ITの募集要件を比較してください。":answers[1]==="afterHigh"?"大学・高専・専門学校を、学びたい専門分野、実習量、研究環境、学費、卒業後の進路で比較するのが適しています。":"現時点では一つに絞らず、学び方・費用・専門分野を比較しながら進学と就職の両方を検討しましょう。";
