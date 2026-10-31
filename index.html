@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>半導体業界・進路選択ナビ</title>
+
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans",
+        "Yu Gothic", sans-serif;
+      background: #f4f7f9;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #ffffff;
+      padding: 30px 20px;
+      border-radius: 16px;
+      box-sizing: border-box;
+    }
+
+    h1 {
+      color: #163a5f;
+      font-size: 28px;
+    }
+
+    h2 {
+      color: #333333;
+      font-size: 20px;
+      margin-top: 30px;
+    }
+
+    p {
+      line-height: 1.8;
+      color: #555555;
+    }
+
+    button {
+      width: 100%;
+      padding: 18px;
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      background: #1976a3;
+      color: white;
+      cursor: pointer;
+    }
+
+    #result {
+      display: none;
+      margin-top: 30px;
+      padding: 20px;
+      background: #eef7fa;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>半導体業界・進路選択ナビ</h1>
+
+    <p>
+      あなたに合う進学先や仕事の方向性を<br>
+      簡単な質問から考えます。
+    </p>
+
+    <h2>まず、あなたに最も近いものを選んでください</h2>
+
+    <button onclick="showResult('高校生')">
+      高校生
+    </button>
+
+    <button onclick="showResult('大学生')">
+      大学生
+    </button>
+
+    <button onclick="showResult('保護者')">
+      保護者
+    </button>
+
+    <div id="result">
+      <h2 id="resultTitle"></h2>
+
+      <p>
+        ボタンが正常に動きました！
+      </p>
+
+      <p>
+        次は、本格的な進路診断を作っていきます。
+      </p>
+    </div>
+
+  </div>
+
+  <script>
+    function showResult(answer) {
+      document.getElementById("result").style.display = "block";
+
+      document.getElementById("resultTitle").innerText =
+        answer + "として診断を開始します";
+    }
+  </script>
+
+</body>
+</html>
